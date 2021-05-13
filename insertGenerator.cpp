@@ -8,6 +8,7 @@
 #include <iostream>
 #include <cstdio>
 #include <cstring>
+#include <sys/stat.h>
 
 using namespace std;
 
@@ -21,6 +22,8 @@ int main( void ) {
 	FILE *archivoInserts;
 	int resp = 0;
 
+	// Creamos la carpeta donde se guardarán los archivos.
+	mkdir("salida", 0777 );
 	cout << "*** ¡Asegúrate de que cada campo esté separado por \';\' y no por comas (\',\')! ***\n";
 
 	do {
@@ -49,7 +52,6 @@ int main( void ) {
 			cout << "Se creará un archivo con " << rows
 			     <<" inserciones en la tabla \"" << table
 			     << "\" de la base de datos \"" << database << "\"." << endl;
-
 
 			// Generamos el nombre del archivo.
 			outputFileName = new char[ strlen("./salida/")+strlen(table)+strlen("Inserts.sql")+1 ];
